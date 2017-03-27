@@ -47,9 +47,6 @@ def notify(chatroom_id, chatroom_name, msg, token):
 	r = requests.post(url, headers = headers, json = payload)
 	if r.status_code == 200:
 		print "Request sent to FCM server successfully!"
-		
-if __name__ == '__main__': 
-	app.run(host='0.0.0.0')
 
 
 

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">A2_1155080901</string>
+    <string name="main_title">IEMS 5722</string>
+    <string name="chatroom">Chatting Room</string>
+    <string name="stu_id">1155080901 Yang Murong</string>
+    <string name="user1">leoymr</string>
+    <string name="user2">guest</string>
+    <string name="action_refresh">refresh</string>
+</resources>

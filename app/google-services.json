@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "217215807847",
+    "firebase_url": "https://instant-msg-a2bf0.firebaseio.com",
+    "project_id": "instant-msg-a2bf0",
+    "storage_bucket": "instant-msg-a2bf0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217215807847:android:04b5235b669d4105",
+        "android_client_info": {
+          "package_name": "hk.edu.cuhk.ie.iems5722.a2_1155080901"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217215807847-lr1gdkmcp15q5je43dq1ns2o4bkvfnvj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hk.edu.cuhk.ie.iems5722.a2_1155080901",
+            "certificate_hash": "7e4faf596c8d2cf67292dcf3c83b1f76e0d3b339"
+          }
+        },
+        {
+          "client_id": "217215807847-et2j1ei6opvi59ce7n70oto5h2oru9bb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-3sZKSMqX3VCw_r5FfcC9654zJLVOMG0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217215807847-et2j1ei6opvi59ce7n70oto5h2oru9bb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -23,11 +23,12 @@ http://iems5722.albertauyeung.com/files/assignments/iems5722-assignment-04.pdf
 
 1、建一个新的api及table来存device的token
 
-2、安装 RabbitMQ 和 Celery
+2、安装 RabbitMQ 和 Celery 以及 task.py 中需要的 requests
 
 ```
 $ sudo apt-get install rabbitmq-server
 $ sudo pip install celery
+$ sudo pip install requests
 ```
 
 3、修改 getAPI.py，在 send_message 方法中调用发送消息至FCM的方法，例如 task.py 中的 notify()。

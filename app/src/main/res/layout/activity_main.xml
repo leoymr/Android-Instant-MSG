@@ -12,7 +12,6 @@
         android:id="@+id/main_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/chatting_bg"
         android:listSelector="@android:color/transparent"></ListView>
 
 </LinearLayout>

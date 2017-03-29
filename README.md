@@ -19,15 +19,18 @@ http://iems5722.albertauyeung.com/files/assignments/iems5722-assignment-04.pdf
 
 在实现 FirebaseMessagingService 的类中生成 notification 方法，以在虚拟机中显示推送框。
 
+3、测试下安卓端的任务有没有出错，先用 FCM console 发送数据看能不能用虚拟机接收到 notification ，出错则有可能是service放错位置，有的依赖未添加。
+
 ### Extending the Server Application 
 
 1、建一个新的api及table来存device的token
 
-2、安装 RabbitMQ 和 Celery
+2、安装 RabbitMQ 和 Celery 以及 task.py 中需要的 requests
 
 ```
 $ sudo apt-get install rabbitmq-server
 $ sudo pip install celery
+$ sudo pip install requests
 ```
 
 3、修改 getAPI.py，在 send_message 方法中调用发送消息至FCM的方法，例如 task.py 中的 notify()。
@@ -44,9 +47,11 @@ notify.delay(···)
 $ celery -A task.celery worker --loglevel=DEBUG
 ```
 
-上述命令可以测试是否可以收到相应的推送消息
+上述命令可以测试是否可以收到相应的推送消息，即用虚拟机或者Postman发送消息，看看能否受到推送，若有错，看看是否在py中有输错 token 或 api_key，或者连
 
-若无error，则配置一个新的supervisor conf文件，在conf.d下打开上次的.conf文件，添加新的program配置信息，command 一行即运行 celery worker的命令
+接FCM的代码有打错。
+
+若无error，则配置一个新的 supervisor 配置文件，在/conf.d下打开上次的.conf文件，添加新的program配置信息，command 一行即运行 celery worker的命令
 
 ```
 [program:iems5722_2]

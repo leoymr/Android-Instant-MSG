@@ -12,8 +12,9 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Random;
+
 import hk.edu.cuhk.ie.iems5722.a2_1155080901.ChatActivity;
-import hk.edu.cuhk.ie.iems5722.a2_1155080901.MainActivity;
 import hk.edu.cuhk.ie.iems5722.a2_1155080901.R;
 
 /**
@@ -23,7 +24,6 @@ import hk.edu.cuhk.ie.iems5722.a2_1155080901.R;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
-    private static int count = 0;
 
     /**
      * Called when message is received.
@@ -53,7 +53,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             sendNotification(remoteMessage.getNotification().getTitle(),
                     remoteMessage.getNotification().getTag(),
                     remoteMessage.getNotification().getBody());
-            count++;
         }
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
@@ -66,13 +65,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String chatroom_name, String chatroom_id, String messageBody) {
+        int requestCode = new Random().nextInt();
         Intent intent = new Intent(this, ChatActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("chatroom_id", chatroom_id);
+        Log.d("chatroom_id", chatroom_id);
         intent.putExtra("chatroom_name", chatroom_name);
-        Log.d(TAG, "sendNotification: "+count);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, requestCode, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         android.support.v4.app.NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
@@ -87,6 +87,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(1, notificationBuilder.build());
+        notificationManager.notify(requestCode, notificationBuilder.build());
+
     }
 }

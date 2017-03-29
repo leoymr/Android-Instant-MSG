@@ -23,6 +23,7 @@ import hk.edu.cuhk.ie.iems5722.a2_1155080901.R;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
+    private static int count = 0;
 
     /**
      * Called when message is received.
@@ -47,6 +48,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
+            count++;
             Log.d("chatroom_id", remoteMessage.getNotification().getTag());
             sendNotification(remoteMessage.getNotification().getTitle(),
                     remoteMessage.getNotification().getTag(),
@@ -56,6 +58,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // message, here is where that should be initiated. See sendNotification method below.
     }
     // [END receive_message]
+
     /**
      * Create and show a simple notification containing the received FCM message.
      *
@@ -64,9 +67,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(String chatroom_name, String chatroom_id, String messageBody) {
         Intent intent = new Intent(this, ChatActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("chatroom_id",chatroom_id);
-        intent.putExtra("chatroom_name",chatroom_name);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+        intent.putExtra("chatroom_id", chatroom_id);
+        intent.putExtra("chatroom_name", chatroom_name);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, count, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -74,6 +77,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.ic_stat_ic_notification)
                 .setContentTitle(chatroom_name)
                 .setContentText(messageBody)
+                .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
@@ -81,6 +85,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(count, notificationBuilder.build());
     }
 }

@@ -19,7 +19,7 @@ http://iems5722.albertauyeung.com/files/assignments/iems5722-assignment-04.pdf
 
 在实现 FirebaseMessagingService 的类中生成 notification 方法，以在虚拟机中显示推送框。
 
-3、测试下安卓端的任务有没有出错，先用 FCM console 发送数据看能不能用虚拟机接收到notification。
+3、测试下安卓端的任务有没有出错，先用 FCM console 发送数据看能不能用虚拟机接收到 notification ，出错则有可能是service放错位置，有的依赖未添加。
 
 ### Extending the Server Application 
 
